@@ -1,8 +1,0 @@
-eu\auracraft\tntrun\Main.class
-eu\auracraft\tntrun\events\ChangeSettingsOnWorldChange.class
-eu\auracraft\tntrun\world\TNTWorldCreator$TNTWorld.class
-eu\auracraft\tntrun\utils\Logger.class
-eu\auracraft\tntrun\utils\ConfigUtils.class
-eu\auracraft\tntrun\utils\Message.class
-eu\auracraft\tntrun\world\TNTWorldCreator.class
-eu\auracraft\tntrun\commands\TNTRunCommand.class
