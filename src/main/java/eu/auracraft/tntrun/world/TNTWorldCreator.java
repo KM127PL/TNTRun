@@ -93,16 +93,18 @@ public class TNTWorldCreator extends ChunkGenerator {
     private static class TNTWorld extends ChunkGenerator {
         @Override
         public ChunkData generateChunkData(World world, Random random, int chunkX, int chunkZ, BiomeGrid biome) {
-            int currentHeight = 60;
             ChunkData chunk = createChunkData(world);
+            ConfigUtils cu = new ConfigUtils();
 
-            for (int X = 0; X < 16; X++)
-                for (int Z = 0; Z < 16; Z++) {
-
-                    chunk.setBlock(X, 50, Z,  Material.valueOf(new ConfigUtils().getString("plugin.world.blocks.pressure-plate")));
-                    chunk.setBlock(X, 49, Z, Material.SAND);
-                    chunk.setBlock(X, 48, Z, Material.valueOf(new ConfigUtils().getString("plugin.world.blocks.tnt")));
+            if(chunkX < cu.getDouble("plugin.world.size") || chunkZ < cu.getDouble("plugin.world.size")) {
+                for (int X = 0; X < 16; X++)
+                    for (int Z = 0; Z < 16; Z++) {
+                        chunk.setBlock(X, 50, Z,  Material.valueOf(cu.getString("plugin.world.blocks.pressure-plate")));
+                        chunk.setBlock(X, 49, Z, Material.SAND);
+                        chunk.setBlock(X, 48, Z, Material.valueOf(cu.getString("plugin.world.blocks.tnt")));
                 }
+            }
+
             return chunk;
         }
     }
