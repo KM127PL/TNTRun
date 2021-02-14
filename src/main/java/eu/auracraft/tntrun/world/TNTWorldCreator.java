@@ -40,6 +40,29 @@ public class TNTWorldCreator extends ChunkGenerator {
         border.setSize(size);
     }
 
+    public static void prepareWorld(String name) {
+        World w = getWorld(name);
+        w.setGameRule(GameRule.DO_TILE_DROPS, false);
+        w.setGameRule(GameRule.DISABLE_RAIDS, true);
+        w.setGameRule(GameRule.DO_ENTITY_DROPS, false);
+        w.setGameRule(GameRule.DO_FIRE_TICK, false);
+        w.setGameRule(GameRule.DO_DAYLIGHT_CYCLE, false);
+        w.setGameRule(GameRule.DO_WEATHER_CYCLE, false);
+        w.setGameRule(GameRule.COMMAND_BLOCK_OUTPUT, false);
+        w.setGameRule(GameRule.DO_INSOMNIA, false);
+        w.setGameRule(GameRule.SHOW_DEATH_MESSAGES, false);
+        w.setGameRule(GameRule.ANNOUNCE_ADVANCEMENTS, false);
+        w.setGameRule(GameRule.DO_MOB_LOOT, false);
+        w.setGameRule(GameRule.DO_MOB_SPAWNING, false);
+        w.setGameRule(GameRule.SPECTATORS_GENERATE_CHUNKS, false);
+        w.setGameRule(GameRule.FALL_DAMAGE, false);
+        w.setAutoSave(false);
+        w.setSpawnLocation(0, 60, 0);
+        w.setTime(3000);
+        w.strikeLightning(new Location(w, 0, 0, 0)); // preload the chunk at 0, 0
+        w.loadChunk(0, 0); // load the actual chunk
+    }
+
     public static void deleteWorld(String name) {
         if(doesWorldExist(name)) return;
         World w = getWorld(name);

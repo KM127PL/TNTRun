@@ -15,6 +15,7 @@ public class TNTRunCommand implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (sender instanceof Player) {
             Player player = (Player) sender;
+            ConfigUtils cu = new ConfigUtils();
             if(player.hasPermission("auracraft.tntrun")) {
                 if(args.length == 0) {
                     Message.sendFormattedMessage(player, "&cThis command was not found!");
@@ -31,8 +32,9 @@ public class TNTRunCommand implements CommandExecutor {
                         break;
                         case "create":
                             Message.sendFormattedMessage(player, "&aCreating TNTRun world of name " + new ConfigUtils().getString("plugin.world.name"));
-                            TNTWorldCreator.createWorld(new ConfigUtils().getString("plugin.world.name"));
-                            TNTWorldCreator.setBorder(new ConfigUtils().getString("plugin.world.name"), new ConfigUtils().getDouble("plugin.world.size"));
+                            TNTWorldCreator.createWorld(cu.getString("plugin.world.name"));
+                            TNTWorldCreator.setBorder(cu.getString("plugin.world.name"), cu.getDouble("plugin.world.size"));
+                            TNTWorldCreator.prepareWorld(cu.getString("plugin.world.name"));
                             Message.sendFormattedMessage(player, "&aWorld sucessfully created!");
                         break;
                         case "delete":
