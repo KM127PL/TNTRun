@@ -67,7 +67,7 @@ public class TNTWorldCreator extends ChunkGenerator {
         if(doesWorldExist(name)) return;
         World w = getWorld(name);
         Bukkit.unloadWorld(w, false);
-        deleteDirectory(new File(Main.getPlugin(Main.class).getServer().getWorldContainer().getAbsolutePath() + "/" + name));
+        deleteDirectory(new File(Main.getPlugin(Main.class).getServer().getWorldContainer().getAbsolutePath() + "../" + name));
     }
 
     // Credits: https://www.baeldung.com/java-delete-directory
