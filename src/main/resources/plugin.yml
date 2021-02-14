@@ -5,6 +5,8 @@ api-version: 1.16
 website: auracraft.eu
 author: KM127PL
 description: TNTRun Plugin made by KM127PL.
+loadbefore: ["MULTIVERSE-CORE"]
+
 commands:
   tnt:
     description: Main TNTRUN Command.
