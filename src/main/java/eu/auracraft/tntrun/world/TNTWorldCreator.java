@@ -95,8 +95,9 @@ public class TNTWorldCreator extends ChunkGenerator {
         public ChunkData generateChunkData(World world, Random random, int chunkX, int chunkZ, BiomeGrid biome) {
             ChunkData chunk = createChunkData(world);
             ConfigUtils cu = new ConfigUtils();
+            double worldSize = cu.getDouble("plugin.world.size") / 4;
 
-            if(chunkX < cu.getDouble("plugin.world.size") || chunkZ < cu.getDouble("plugin.world.size")) {
+            if(chunkX < worldSize || chunkZ < worldSize) {
                 for (int X = 0; X < 16; X++)
                     for (int Z = 0; Z < 16; Z++) {
                         chunk.setBlock(X, 50, Z,  Material.valueOf(cu.getString("plugin.world.blocks.pressure-plate")));
