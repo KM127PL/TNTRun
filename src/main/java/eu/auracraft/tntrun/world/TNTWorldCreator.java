@@ -8,6 +8,7 @@ import org.bukkit.generator.ChunkGenerator;
 import org.bukkit.util.noise.SimplexOctaveGenerator;
 
 import java.io.File;
+import java.util.Objects;
 import java.util.Random;
 
 public class TNTWorldCreator extends ChunkGenerator {
@@ -91,22 +92,27 @@ public class TNTWorldCreator extends ChunkGenerator {
     }
 
     private static class TNTWorld extends ChunkGenerator {
+
+        public void setBlockAt(Location loc, Material block) {
+            Objects.requireNonNull(loc.getWorld()).getBlockAt(loc).setType(block);
+        }
+
         @Override
         public ChunkData generateChunkData(World world, Random random, int chunkX, int chunkZ, BiomeGrid biome) {
             ChunkData chunk = createChunkData(world);
             ConfigUtils cu = new ConfigUtils();
             double worldSize = cu.getDouble("plugin.world.size") / 4;
 
-            if(chunkX < worldSize || chunkZ < worldSize) {
+            /*if(chunkX < worldSize || chunkZ < worldSize) {
                 for (int X = 0; X < 16; X++)
                     for (int Z = 0; Z < 16; Z++) {
                         chunk.setBlock(X, 50, Z,  Material.valueOf(cu.getString("plugin.world.blocks.pressure-plate")));
                         chunk.setBlock(X, 49, Z, Material.SAND);
                         chunk.setBlock(X, 48, Z, Material.valueOf(cu.getString("plugin.world.blocks.tnt")));
                 }
-            }
+            }*/
 
-            return chunk;
+            return chunk; // just return an empty chunk =)
         }
     }
 }
